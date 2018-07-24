@@ -52,8 +52,12 @@ def sleep(time, until=None):
 
 
 def setup(start, args=[], kwargs={},
+          custom_reactor=None,
           host="localhost", port=5039,
-          defaultLogging=True, runreactor=True, connectionLostHandler=None, clientConnectionFailedHandler=None):
+          defaultLogging=True, 
+          runreactor=True, 
+          connectionLostHandler=None, 
+          clientConnectionFailedHandler=None):
     try:
         import yateproxy
         from yaypm import YateLogHandler
@@ -70,6 +74,7 @@ def setup(start, args=[], kwargs={},
             formatter = ConsoleFormatter('%(message)s')
 
     else:
+        target_reactor = reactor if custom_reactor is None else custom_reactor
         reactor.connectTCP(host, port,
                            TCPDispatcherFactory(start, args, kwargs, connectionLostHandler=connectionLostHandler,
                                                 clientConnectionFailedHandler=clientConnectionFailedHandler))
