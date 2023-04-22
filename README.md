@@ -1,3 +1,8 @@
+Since the repo from [here](https://github.com/camillo/yaypm) was not maintained, we set up this new repo. 
+
+The new name `yaypm3` is reflecting our support for python v3.
+***
+
 This lib was written by Maciek Kaminski.
 
 I ported it to python3 and hacked a few things.
