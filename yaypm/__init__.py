@@ -646,7 +646,7 @@ class TCPDispatcher(Dispatcher, LineReceiver):
             result = ""
             for name, value in self._attrs.items():
                 if type(value) == type(""):
-                    v = value.encode('raw_unicode_escape')
+                    v = value.encode('raw_unicode_escape').decode('ascii')
                 elif type(value) != type(""):
                     v = str(value)
                 else:
