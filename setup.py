@@ -20,12 +20,13 @@ setup(
     download_url='https://github.com/utob-ir/yaypm/archive/3.0.tar.gz',
     keywords=['yate', 'extmodule'],
     license='GPL',
+    # Reference: https://pypi.org/classifiers/
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         # Chose either "3 - Alpha", "4 - Beta" or "5 - Production/Stable" as the current state of your package
         'Intended Audience :: Developers',  # Define that your audience are developers
         'Topic :: Software Development :: Build Tools',
-        'License :: OSI Approved :: GPL License',  # Again, pick a license
+        'License :: OSI Approved :: GNU General Public License (GPL)',  # Again, pick a license
         'Programming Language :: Python :: 3',  # Specify which python versions that you want to support
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
