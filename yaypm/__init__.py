@@ -1,4 +1,5 @@
-import imp
+import importlib.util
+import importlib.machinery
 import logging
 import random
 import string
@@ -12,6 +13,16 @@ from twisted.internet.error import ReactorNotRunning
 from twisted.internet.protocol import ClientFactory
 from twisted.protocols.basic import LineReceiver
 from twisted.python import failure
+
+def load_source(modname, filename):
+    loader = importlib.machinery.SourceFileLoader(modname, filename)
+    spec = importlib.util.spec_from_file_location(modname, filename, loader=loader)
+    module = importlib.util.module_from_spec(spec)
+    # The module is always executed and not cached in sys.modules.
+    # Uncomment the following line to cache the module.
+    # sys.modules[module.__name__] = module
+    loader.exec_module(module)
+    return module
 
 try:
     import yateproxy
@@ -424,7 +435,7 @@ class EmbeddedDispatcher(Dispatcher):
                 yateproxy.debug("yaypm",
                                 logging.DEBUG,
                                 "Loading script: %s as %s" % (script, name))
-                imp.load_source(name, script)
+                load_source(name, script)
             except Exception:
                 yateproxy.debug("pymodule(%s)" % "yaypm",
                                 logging.ERROR,
